@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cp-private
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cp-private
+  template:
+    metadata:
+      labels:
+        app: cp-private
+    spec:
+      containers:
+      - name: cp-private
+        image: oydeu/cp-private:latest
+        ports:
+        - containerPort: 3000
+        env:
+          - name: LANG
+            value: C.UTF-8
+          - name: RAILS_LOG_TO_STDOUT
+            value: "TRUE"
+          - name: RAILS_SERVE_STATIC_FILES
+            value: "TRUE"
+          - name: RAILS_ENV
+            value: production
+          - name: RAILS_CONFIG_HOSTS
+            value: "cp-private.data-container.net"
+          - name: AUTH
+            value: "true"
+          - name: DC_DB
+            value: kubernetes
+          - name: DB2_HOST
+            value: postgres
+          - name: DB2_NAME
+            value: cp-private
+          - name: DB2_USER
+            value: postgres
+          - name: POSTGRES2_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: superUserPassword
+          - name: DEFAULT_DID_OAUTH_APP
+            value: "oydid"
+          - name: DEFAULT_VC_OAUTH_APP
+            value: "oydid-vc"
+          - name: ISSUER_DID
+            value: "did:oyd:zQmYSydHP5A1nRuqMcAoxpb971mfJrKJxpGJPEsxc5mw5Wt"
+          - name: ISSUER_PWD
+            value: "issuer-doc"
+          - name: HOLDER_DID
+            value: "did:oyd:zQmaS7yYwARSEw3ZEzi5wyfiz78hiBCS9UFaxWstueXxvNU"
+          - name: HOLDER_PWD
+            value: "cppwd"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cp-private
+spec:
+  selector:
+    app: cp-private
+  type: NodePort
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cp-private
+  annotations:
+    certmanager.io/issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: "nginx"
+  tls:
+  - hosts:
+    - cp-private.data-container.net
+    secretName: cp-private-tls
+  rules:
+  - host: cp-private.data-container.net
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: cp-private
+            port:
+              number: 80
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: cp-private-tls
+  annotations:
+    cert-manager.io/issuer: "letsencrypt-prod"
+spec:
+  secretName: cp-private-tls
+  issuerRef:
+    group: cert-manager.io
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+  - 'cp-private.data-container.net'

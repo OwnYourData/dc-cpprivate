@@ -1,0 +1,4 @@
+./build.sh --dockerhub
+docker tag oydeu/cp-private:latest oydeu/cp-private:240612
+docker push oydeu/cp-private:240612
+k8 set image deployment.v1.apps/cp-private cp-private=oydeu/cp-private:240612

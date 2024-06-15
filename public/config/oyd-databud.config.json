@@ -1,0 +1,42 @@
+{
+  "endpoint": {
+    "url": null,
+    "clientId": "dev.unterholzer.ownyourdata.databud.view",
+    "credentials": {
+      "appKey": null,
+      "appSecret": null
+    }
+  },
+  "settings": {
+    "additionalFormActions": {
+      "generate_epd_dri": {
+        "method": "POST",
+        "usesAuth": false,
+        "title": "Generate EPD",
+        "schemaDri": "zQmcVZJkUgqYF1CqHpWVfoNpdz9BWNMuicGzyYHfa6ASifo",
+        "url": "{{base_url}}/api/epd/generate/{{item_id}}"
+      },
+      "generate_epd": {
+        "method": "POST",
+        "usesAuth": false,
+        "title": "Generate EPD",
+        "schemaDri": "ConcreteMixture",
+        "url": "{{base_url}}/api/epd/generate/{{item_id}}"
+      },
+      "publish_epd_dri": {
+        "method": "OPEN",
+        "usesAuth": false,
+        "title": "Publish DPP",
+        "schemaDri": "zQmNxiLgMNYcFXKkPVauZhARRo2gW9uGMn31ztyQ5qLojYE",
+        "url": "publish/{{item_id}}"
+      },
+      "publish_epd": {
+        "method": "OPEN",
+        "usesAuth": false,
+        "title": "Publish EPD",
+        "schemaDri": "ConcreteDPP",
+        "url": "publish/{{item_id}}"
+      }
+    }
+  }
+}
