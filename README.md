@@ -29,7 +29,7 @@ If you want to contribute, please follow these steps:
 
 ## About  
 
-<img align="right" src="https://raw.githubusercontent.com/OwnYourData/dc-cpprivate/main/app/assets/images/ngi-sargasso.png" height="100">This project has received funding from the European Union’s Horizon Europe research and innovation program through the [NGI SARGASSO program](https://ngisargasso.eu/) under cascade funding agreement No 101092887.
+<img align="right" src="https://raw.githubusercontent.com/OwnYourData/dc-cpprivate/main/app/assets/images/ngi-sargasso.png" height="50">This project has received funding from the European Union’s Horizon Europe research and innovation program through the [NGI SARGASSO program](https://ngisargasso.eu/) under cascade funding agreement No 101092887.
 
 <br clear="both" />
 
