@@ -13,7 +13,7 @@
         "method": "POST",
         "usesAuth": false,
         "title": "Generate EPD",
-        "schemaDri": "zQmcVZJkUgqYF1CqHpWVfoNpdz9BWNMuicGzyYHfa6ASifo",
+        "schemaDri": "zQmYNU2ivnL8qdhx7wPrE2GT2Da6iTtxm65oDUfXkFTX8eR",
         "url": "{{base_url}}/api/epd/generate/{{item_id}}"
       },
       "generate_epd": {
@@ -23,19 +23,47 @@
         "schemaDri": "ConcreteMixture",
         "url": "{{base_url}}/api/epd/generate/{{item_id}}"
       },
-      "publish_epd_dri": {
-        "method": "OPEN",
+      "generate_dpp_dri": {
+        "method": "POST",
         "usesAuth": false,
-        "title": "Publish DPP",
-        "schemaDri": "zQmNxiLgMNYcFXKkPVauZhARRo2gW9uGMn31ztyQ5qLojYE",
-        "url": "publish/{{item_id}}"
+        "title": "Generate DPP",
+        "schemaDri": "zQmbD7zqF86kZ2nbmVLDwLZBehfYqTnMo5vKKQ183NjaVB7",
+        "url": "{{base_url}}/api/dpp/generate/{{item_id}}"
       },
-      "publish_epd": {
+      "generate_dpp": {
+        "method": "POST",
+        "usesAuth": false,
+        "title": "Generate DPP",
+        "schemaDri": "ConcreteDPP",
+        "url": "{{base_url}}/api/dpp/generate/{{item_id}}"
+      },
+      "validate_dpp_dri": {
         "method": "OPEN",
         "usesAuth": false,
-        "title": "Publish EPD",
+        "title": "Validate DPP",
+        "schemaDri": "zQmbD7zqF86kZ2nbmVLDwLZBehfYqTnMo5vKKQ183NjaVB7",
+        "url": "validate/{{item_id}}"
+      },
+      "validate_dpp": {
+        "method": "OPEN",
+        "usesAuth": false,
+        "title": "Validate DPP",
         "schemaDri": "ConcreteDPP",
-        "url": "publish/{{item_id}}"
+        "url": "validate/{{item_id}}"
+      },
+      "issue_vc": {
+        "method": "OPEN",
+        "usesAuth": false,
+        "title": "Show Delivery VC",
+        "schemaDri": "ConcreteDelivery",
+        "url": "issue/{{item_id}}"
+      },
+      "issue_vc_dri": {
+        "method": "OPEN",
+        "usesAuth": false,
+        "title": "Show Delivery VC",
+        "schemaDri": "zQmTEDCAJzCNk1j8qXiMdfhybwEm5xsSvhQSqLfkbs34gQc",
+        "url": "issue/{{item_id}}"
       }
     }
   }

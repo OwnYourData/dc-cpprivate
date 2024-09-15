@@ -2,3 +2,5 @@
 docker tag oydeu/cp-private:latest oydeu/cp-private:240612
 docker push oydeu/cp-private:240612
 k8 set image deployment.v1.apps/cp-private cp-private=oydeu/cp-private:240612
+
+docker run -d -p 3000:3000 --name cp -e ISSUER_DID="did:oyd:zQmYSydHP5A1nRuqMcAoxpb971mfJrKJxpGJPEsxc5mw5Wt" -e ISSUER_PWD="issuer-doc" oydeu/cp-private:latest

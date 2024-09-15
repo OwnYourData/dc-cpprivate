@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">Issue Credential</h1>
+  <div class="flex flex-row justify-center pt-10 pb-4">
+    <div class="rounded border-2 p-5 border-indigo-200" style="width: 300px;">
+      <img src="<%= "data:image/png;base64," + Base64.strict_encode64(
+          Barby::QrCode.new(@credential_offer, level: :q, size: 20).to_png({ xdim: 8 })
+      ).html_safe %>">
+      <p>Scan me</p>
+    </div>
+  </div>
+  <p class="pb-4">&nbsp;</p>
+  <p class="pb-4">... or directly send to a web wallet:</p>
+  <div class="max-w-md mx-auto mt-6">
+    <%= form_with url: send_vc_path, method: :post, local: false, class: "flex flex-col space-y-4" do %>
+      <%= hidden_field_tag :id, @item_id %>
+      <%= hidden_field_tag :pre_auth, @id %>
+      
+      <div class="flex flex-col">
+        <%= label_tag :holder, "Web Wallet Address", class: "font-medium text-gray-900" %>
+        <div class="flex">
+          <%= text_field_tag :holder, nil, class: "flex-grow px-4 py-2 text-gray-900 border border-gray-300 rounded-l-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+          <%= submit_tag "Go", class: "ml-2 px-6 py-2 font-bold text-white bg-indigo-600 rounded-r-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+        </div>
+      </div>
+      
+    <% end %>
+    <div id="success-banner" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-md">
+      Verifiable Credential successfully sent!
+    </div>    
+    <div id="error-banner" class="hidden mt-4 p-4 bg-red-100 text-red-700 rounded-md">
+      There was an error submitting the form. Please try again.
+    </div>
+  </div>
+
+  <p class="pb-4">&nbsp;</p>
+  <p class="pb-4"><em>You can close this windows after issuing the Verifiable Credential.</em></p>
+
+
+</div>

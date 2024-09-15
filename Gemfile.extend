@@ -10,3 +10,5 @@ gem "bootstrap-sass", ">= 3.4.1"
 gem 'font-awesome-rails'
 gem "rqrcode", "~> 2.0"
 gem "barby",  "~> 0.6.2"
+gem "rails-ujs"
+gem "turbolinks"

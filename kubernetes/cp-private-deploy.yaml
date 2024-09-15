@@ -29,7 +29,7 @@ spec:
           - name: RAILS_CONFIG_HOSTS
             value: "cp-private.data-container.net"
           - name: AUTH
-            value: "true"
+            value: "idaustria"
           - name: DC_DB
             value: kubernetes
           - name: DB2_HOST
@@ -43,6 +43,8 @@ spec:
               secretKeyRef:
                 name: postgres-secret
                 key: superUserPassword
+          - name: CONTAINER_NAME
+            value: "Concrete Producer - Private Data Store"
           - name: DEFAULT_DID_OAUTH_APP
             value: "oydid"
           - name: DEFAULT_VC_OAUTH_APP
@@ -55,6 +57,10 @@ spec:
             value: "did:oyd:zQmaS7yYwARSEw3ZEzi5wyfiz78hiBCS9UFaxWstueXxvNU"
           - name: HOLDER_PWD
             value: "cppwd"
+          - name: SM_APPKEY
+            value: "qRXhTJVntLIQjKzllLD5gnE33QcVA81LAX1y7VZ7u4E"
+          - name: SM_APPSECRET
+            value: "HV6OflMxRu9MgofNjwmiUTftLVidgzvoaqXXF46_zwc"
 ---
 kind: Service
 apiVersion: v1

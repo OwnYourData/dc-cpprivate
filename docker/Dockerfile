@@ -1,5 +1,5 @@
 FROM oydeu/dc-base
-MAINTAINER "Christoph Fabianek" christoph@ownyourdata.eu
+LABEL maintainer="Christoph Fabianek <christoph@ownyourdata.eu>"
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
@@ -21,7 +21,7 @@ RUN apt-get update && \
 	apt-get install nodejs -y && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY Gemfile.extend $WORKDIR
+COPY Gemfile.extend $RAILS_ROOT
 RUN git config --global url."https://".insteadOf git:// && \
 	gem update --system && \
 	bundle update --bundler && \
